@@ -1,0 +1,19 @@
+{
+  "printWidth": 120,
+  "semi": false,
+  "singleQuote": true,
+  "htmlWhitespaceSensitivity": "strict",
+  "importOrder": [
+    "^@dvizhokweb/(.*)$",
+    "^@app/(.*)$",
+    "^@pages/(.*)$",
+    "^@widgets/(.*)$",
+    "^@features/(.*)$",
+    "^@entities/(.*)$",
+    "^@shared/(.*)$",
+    "^src/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}
