@@ -5,6 +5,7 @@ import { Button } from '@/shared/Button/Button'
 import { useForm } from 'react-hook-form'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import { DayPartPicker } from '@/entities/DayPartPicker/ui/DayPartPicker'
+import React from 'react'
 
 type Filters = {
   tags: string[]
@@ -23,8 +24,6 @@ export default function Filters() {
     <form onSubmit={onSubmit}>
       <div className="h-screen">
         <div className="px-4">
-          <h1 className="font-bold text-xl text-center">Фильтры</h1>
-
           <p className="font-semibold pb-4">Выбрать теги</p>
         </div>
         <div className="pb-6">

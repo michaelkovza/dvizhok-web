@@ -4,22 +4,15 @@ import { useForm } from 'react-hook-form'
 import { Input } from '@/shared/Input/Input'
 import { Button } from '@/shared/Button/Button'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
-import { BackButton } from '@/shared/BackButton/BackButton'
-import { useRouter } from 'next/navigation'
+import React from 'react'
 
 export default function CreateEvent() {
-  const router = useRouter()
   const { register, handleSubmit } = useForm()
   const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
-        <div className="flex content-center px-4 py-4">
-          <BackButton handleOnBack={router.back} />
-          <h1 className="font-bold text-xl text-center flex-1">Создать событие</h1>
-        </div>
-
         <div className="py-2 px-4">
           <Input {...register('title')} type="text" placeholder="Название мероприятия" />
         </div>
