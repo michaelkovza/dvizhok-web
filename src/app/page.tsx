@@ -1,31 +1,29 @@
-import EventCard from '@/entities/Events/ui/EventCard/EventCard'
 import Link from 'next/link'
 import { EventsList } from '@/entities/Events/ui/EventsList/EventsList'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import Footer from '@/widgets/Footer/Footer'
+import { Header } from '@/widgets/Header/Header'
+import Image from 'next/image'
+import Dvizhok from '../../public/dvizhok.svg'
+import Filters from '../../public/filters.svg'
+import { Navigation } from '@/widgets/Navigation/Navigation'
 
 export default function Home() {
   return (
     <main>
       <div className="sticky top-0 bg-accent-dark pb-4 z-10">
-        <header className="flex flex-row justify-center p-4">
-          {/* TODO определить локацию? как */}
-          <p className="flex justify-start w-full">Moscow</p>
-          <p>DVIZHOK</p>
-          <div className="flex justify-end w-full">X</div>
-        </header>
+        {/* TODO определить локацию? как */}
+        <Header>
+          <Image src={Dvizhok} alt="logo icon" />
+        </Header>
 
-        {/* TODO думать как их реализовать ссылки + сср */}
+        <Navigation />
 
-        <div>
-          <Link href="/">Ищу</Link>
-          <Link href="/feature-events">Пойду</Link>
-          <Link href="/my-events">Организую</Link>
-        </div>
-
-        <div className="flex flex-row justify-between p-4">
-          <p>Рекомендация</p>
-          <Link href="/filters">Фильтры</Link>
+        <div className="flex flex-row justify-between p-4 items-center">
+          <p className="font-semibold">Рекомендация</p>
+          <Link href="/filters">
+            <Image src={Filters} alt="filters icon" />
+          </Link>
         </div>
         <TagsList />
       </div>

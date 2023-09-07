@@ -7,7 +7,7 @@ type Props = {
 
 export function BackButton({ handleOnBack }: Props) {
   return (
-    <button className="mr-a" onClick={handleOnBack}>
+    <button className="absolute left-4 top-1/2 transform -translate-y-1/2" onClick={handleOnBack}>
       <Image src={Back} alt="" />
     </button>
   )

@@ -13,7 +13,7 @@ export function Header({ children, withBackButton }: Props) {
   const router = useRouter()
 
   return (
-    <header className="flex content-center px-4 py-4">
+    <header className="flex content-center px-4 py-4 justify-center relative">
       {withBackButton && <BackButton handleOnBack={router.back} />}
       {children}
     </header>

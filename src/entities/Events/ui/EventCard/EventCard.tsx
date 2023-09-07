@@ -14,7 +14,7 @@ export default function EventCard({ title, timestamp, distance, image, tags }: P
   return (
     <Link href="/events/book-club">
       <div className="flex items-center mb-2 rounded-sm">
-        <div className="h-24 w-20 relative overflow-hidden">
+        <div className="h-24 w-20 relative overflow-hidden rounded">
           <Image src={image || EventImage} alt={title} className="object-cover" fill />
         </div>
         <div className="flex-1 px-3">
