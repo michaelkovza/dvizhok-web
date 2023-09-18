@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import EventImage from '../../../../../public/lib.jpg'
 import Link from 'next/link'
+import { Typography } from '@/shared/Typography/Typography'
 
 type Props = {
   title: string
@@ -18,15 +19,17 @@ export default function EventCard({ title, timestamp, distance, image, tags }: P
           <Image src={image || EventImage} alt={title} className="object-cover" fill />
         </div>
         <div className="flex-1 px-3">
-          <p>{title}</p>
-          <p>{timestamp}</p>
+          <Typography className="font-semibold text-lg">{title}</Typography>
+          <Typography className="font-normal text-sm">{timestamp}</Typography>
           <div className="flex flex-row justify-between">
             <div className="flex flex-row justify-start gap-4">
               {tags.map((tag) => (
-                <span key={tag}>{tag}</span>
+                <Typography className="font-normal text-sm" as="span" key={tag}>
+                  {tag}
+                </Typography>
               ))}
             </div>
-            <p>{distance}</p>
+            <Typography className="font-normal text-xs">{distance}</Typography>
           </div>
         </div>
       </div>

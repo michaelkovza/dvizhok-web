@@ -1,5 +1,6 @@
 import { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import React from 'react'
+import { Input as MaterialInput } from '@material-tailwind/react'
 
 type InputComponentProps = HTMLProps<HTMLInputElement>
 
@@ -9,10 +10,17 @@ type Props = InputComponentProps & {
 
 function InputComponent({ forwardedRef, ...props }: Props) {
   return (
-    <input
-      className="w-full bg-accent-dark rounded p-3 outline-0 border border-border-input"
+    <MaterialInput
+      color="white"
+      containerProps={{
+        className: 'min-w-[auto]',
+      }}
+      className="!border !border-border-input bg-transparent focus:!border-border-input focus:!border-t-border-input"
       ref={forwardedRef}
       {...props}
+      labelProps={{
+        className: 'hidden',
+      }}
     />
   )
 }
