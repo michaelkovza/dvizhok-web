@@ -2,24 +2,28 @@
 
 import { Input } from '@/shared/Input/Input'
 import { Button } from '@/shared/Button/Button'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import { DayPartPicker } from '@/entities/DayPartPicker/ui/DayPartPicker'
 import React from 'react'
 import { Typography } from '@/shared/Typography/Typography'
+import { DayPartsIds } from '@/entities/DayPartPicker/model'
 import { Slider } from '@/shared/Slider/Slider'
 
-type Filters = {
-  tags: string[]
-  date: string
-  time: string
-  from: number
-  to: number
-  direction: number
-}
-
 export function FiltersForm() {
-  const { register, handleSubmit } = useForm<Filters>()
+  const { control, handleSubmit, setValue, watch } = useForm<{
+    distance: string
+    dayPart: keyof typeof DayPartsIds
+  }>({
+    defaultValues: {
+      from: '',
+      to: '',
+      distance: '10',
+      dayPart: DayPartsIds.MORNING,
+      date: new Date().toLocaleDateString(),
+    },
+  })
+
   const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
@@ -37,13 +41,38 @@ export function FiltersForm() {
         <div className="px-4">
           <p className="font-semibold pb-4">Выберите дату</p>
           <div className="flex justify-between gap-2.5 pb-6">
-            <Input {...register('date')} type="date" placeholder="Дата" />
-            <Input {...register('time')} type="time" placeholder="Время" />
+            <Controller
+              name="date"
+              control={control}
+              render={({ field: { value } }) => (
+                <>
+                  <Input
+                    onChange={(e) => {
+                      setValue('date', e.target.value)
+                    }}
+                    value={value}
+                    type="date"
+                    placeholder="Дата"
+                  />
+                </>
+              )}
+            />
           </div>
 
           <p className="font-semibold pb-4">Предпочтительное время</p>
           <div className="pb-6">
-            <DayPartPicker />
+            <Controller
+              control={control}
+              render={({ field: { value } }) => (
+                <DayPartPicker
+                  activeDayPart={value}
+                  handleOnClick={(value) => {
+                    setValue('dayPart', value)
+                  }}
+                />
+              )}
+              name="dayPart"
+            />
           </div>
 
           <div className="flex justify-between pb-4">
@@ -51,17 +80,55 @@ export function FiltersForm() {
             <p className="font-semibold">₽</p>
           </div>
           <div className="flex justify-between gap-2.5 pb-6">
-            <Input type="number" placeholder="От" {...register('from')} />
-            <Input type="number" placeholder="До" {...register('to')} />
+            <Controller
+              name="from"
+              control={control}
+              render={({ field: { value } }) => (
+                <Input
+                  onChange={(e) => {
+                    setValue('from', e.target.value)
+                  }}
+                  value={value}
+                  type="number"
+                  placeholder="От"
+                />
+              )}
+            />
+            <Controller
+              name="to"
+              control={control}
+              render={({ field: { value } }) => (
+                <Input
+                  onChange={(e) => {
+                    setValue('to', e.target.value)
+                  }}
+                  value={value}
+                  type="number"
+                  placeholder="До"
+                />
+              )}
+            />
           </div>
 
           <div className="flex justify-between pb-4">
             <p className="font-semibold">Расстояние</p>
-            <p className="font-semibold">15км</p>
+            <p className="font-semibold">{watch('distance')} км</p>
           </div>
 
-          <Slider />
-
+          <Controller
+            name="distance"
+            control={control}
+            render={({ field: { value } }) => {
+              return (
+                <Slider
+                  onChange={(e) => {
+                    setValue('distance', e.target.value)
+                  }}
+                  value={value}
+                />
+              )
+            }}
+          />
         </div>
       </div>
       <div className="sticky bottom-0 p-4">

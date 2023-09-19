@@ -2,7 +2,7 @@
 
 import React, { useCallback } from 'react'
 import { Button } from '@material-tailwind/react'
-import { Drawer } from '@/shared/Drawer/Drawer';
+import { Drawer } from '@/shared/Drawer/Drawer'
 
 import 'react-modern-drawer/dist/index.css'
 import { FiltersForm } from '@/widgets/Filters/ui/FiltersForm/FiltersForm'

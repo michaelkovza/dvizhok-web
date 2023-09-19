@@ -12,7 +12,7 @@ export default function Home() {
             Рекомендация
           </Typography>
 
-          <FiltersDrawer />
+          <FiltersDrawer  />
         </div>
         <TagsList />
       </div>

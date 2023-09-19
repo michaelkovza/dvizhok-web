@@ -1,6 +1,12 @@
-import React, { useEffect } from 'react'
+'use client'
 
-import { default as DrawerComponent } from 'react-modern-drawer'
+import React, { useEffect } from 'react'
+import { default as ReactModerDrawer } from 'react-modern-drawer'
+
+import dynamic from 'next/dynamic'
+
+const DrawerComponent = dynamic<ReactModerDrawer>(() => import('react-modern-drawer'), { ssr: false })
+
 import 'react-modern-drawer/dist/index.css'
 
 type Props = {

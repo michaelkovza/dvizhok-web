@@ -1,16 +1,19 @@
-import { Slider as SliderMaterial } from '@material-tailwind/react'
+import { Slider as SliderMaterial, SliderProps } from '@material-tailwind/react'
+import { ForwardedRef, forwardRef } from 'react'
 
-type Props = {
-  min?: number
-  max?: number
+type Props = SliderProps & {
+  ref: ForwardedRef<HTMLDivElement>
 }
 
-export function Slider({ min = 0, max = 15 }: Props) {
+function SliderComponent({ forwardedRef, ...props }: Props) {
   return (
     <SliderMaterial
+      ref={forwardedRef}
+      {...props}
       step={1}
+      min={1}
+      max={100}
       size="lg"
-      defaultValue={5}
       className="text-accent-purple"
       barClassName="rounded bg-[#CCD3FF]"
       thumbClassName="[&::-moz-range-thumb]:rounded[&::-webkit-slider-thumb]:rounded"
@@ -18,3 +21,9 @@ export function Slider({ min = 0, max = 15 }: Props) {
     />
   )
 }
+
+export const Slider = forwardRef<HTMLDivElement, Props>((props, ref) => (
+  <SliderComponent forwardedRef={ref} {...props} />
+))
+
+Slider.displayName = 'Slider'
