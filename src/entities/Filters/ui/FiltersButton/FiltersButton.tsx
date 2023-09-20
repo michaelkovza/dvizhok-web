@@ -6,6 +6,7 @@ import { Drawer } from '@/shared/Drawer/Drawer'
 
 import { FiltersForm } from '@/entities/Filters/ui/FiltersForm/FiltersForm'
 import NiceModal from '@ebay/nice-modal-react'
+import { Icon } from '@/shared/Icon/Icon'
 
 export function FiltersButton() {
   const showFiltersForm = useCallback(() => {
@@ -19,7 +20,7 @@ export function FiltersButton() {
       variant="text"
       onClick={showFiltersForm}
     >
-      Фильтры
+      <Icon name="filters" />
     </Button>
   )
 }

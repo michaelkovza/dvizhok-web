@@ -1,8 +1,3 @@
-import MorningIcon from '../../../../public/morning.svg'
-import DayIcon from '../../../../public/day.svg'
-import EveningIcon from '../../../../public/evening.svg'
-import NightIcon from '../../../../public/night.svg'
-
 export enum DayPartsIds {
   MORNING = 'MORNING',
   DAY = 'DAY',
@@ -14,21 +9,21 @@ export const dayParts = [
   {
     id: DayPartsIds.MORNING,
     title: 'Утро',
-    icon: MorningIcon,
+    icon: 'morning',
   },
   {
     id: DayPartsIds.DAY,
     title: 'День',
-    icon: DayIcon,
+    icon: 'day',
   },
   {
     id: DayPartsIds.EVENING,
     title: 'Вечер',
-    icon: EveningIcon,
+    icon: 'evening',
   },
   {
     id: DayPartsIds.NIGHT,
     title: 'Ночь',
-    icon: NightIcon,
+    icon: 'night',
   },
 ] as const
