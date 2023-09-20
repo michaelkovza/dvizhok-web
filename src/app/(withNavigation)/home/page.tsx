@@ -1,6 +1,6 @@
 import { EventsList } from '@/entities/Events/ui/EventsList/EventsList'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
-import { FiltersDrawer } from '@/widgets/Filters/ui/FiltersDrawer/FiltersDrawer'
+import { FiltersButton } from '@/entities/Filters/ui/FiltersButton/FiltersButton'
 import { Typography } from '@/shared/Typography/Typography'
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
             Рекомендация
           </Typography>
 
-          <FiltersDrawer  />
+          <FiltersButton />
         </div>
         <TagsList />
       </div>

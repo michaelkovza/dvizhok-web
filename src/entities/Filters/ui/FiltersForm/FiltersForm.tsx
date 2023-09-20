@@ -11,10 +11,7 @@ import { DayPartsIds } from '@/entities/DayPartPicker/model'
 import { Slider } from '@/shared/Slider/Slider'
 
 export function FiltersForm() {
-  const { control, handleSubmit, setValue, watch } = useForm<{
-    distance: string
-    dayPart: keyof typeof DayPartsIds
-  }>({
+  const { control, handleSubmit, setValue, watch, register } = useForm({
     defaultValues: {
       from: '',
       to: '',
@@ -29,7 +26,7 @@ export function FiltersForm() {
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
-        <Typography className="text-center font-semibold pb-4">Фильтры</Typography>
+        <Typography className="text-center font-semibold pb-4 pt-2 text-xl">Фильтры</Typography>
 
         <div className="px-4">
           <p className="font-semibold pb-4">Выбрать теги</p>
@@ -41,22 +38,7 @@ export function FiltersForm() {
         <div className="px-4">
           <p className="font-semibold pb-4">Выберите дату</p>
           <div className="flex justify-between gap-2.5 pb-6">
-            <Controller
-              name="date"
-              control={control}
-              render={({ field: { value } }) => (
-                <>
-                  <Input
-                    onChange={(e) => {
-                      setValue('date', e.target.value)
-                    }}
-                    value={value}
-                    type="date"
-                    placeholder="Дата"
-                  />
-                </>
-              )}
-            />
+            <Input {...register('date')} type="date" placeholder="Дата" format={""} />
           </div>
 
           <p className="font-semibold pb-4">Предпочтительное время</p>
@@ -80,34 +62,8 @@ export function FiltersForm() {
             <p className="font-semibold">₽</p>
           </div>
           <div className="flex justify-between gap-2.5 pb-6">
-            <Controller
-              name="from"
-              control={control}
-              render={({ field: { value } }) => (
-                <Input
-                  onChange={(e) => {
-                    setValue('from', e.target.value)
-                  }}
-                  value={value}
-                  type="number"
-                  placeholder="От"
-                />
-              )}
-            />
-            <Controller
-              name="to"
-              control={control}
-              render={({ field: { value } }) => (
-                <Input
-                  onChange={(e) => {
-                    setValue('to', e.target.value)
-                  }}
-                  value={value}
-                  type="number"
-                  placeholder="До"
-                />
-              )}
-            />
+            <Input {...register('from')} type="number" placeholder="От" />
+            <Input {...register('to')} type="number" placeholder="До" />
           </div>
 
           <div className="flex justify-between pb-4">
@@ -115,20 +71,7 @@ export function FiltersForm() {
             <p className="font-semibold">{watch('distance')} км</p>
           </div>
 
-          <Controller
-            name="distance"
-            control={control}
-            render={({ field: { value } }) => {
-              return (
-                <Slider
-                  onChange={(e) => {
-                    setValue('distance', e.target.value)
-                  }}
-                  value={value}
-                />
-              )
-            }}
-          />
+          <Slider {...register('distance')} />
         </div>
       </div>
       <div className="sticky bottom-0 p-4">

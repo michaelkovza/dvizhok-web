@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import { Header } from '@/widgets/Header/Header'
 import Footer from '@/widgets/Footer/Footer'
 
+import 'react-modern-drawer/dist/index.css'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

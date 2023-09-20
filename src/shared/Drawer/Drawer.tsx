@@ -1,39 +1,34 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect } from 'react'
+import NiceModal, { useModal } from '@ebay/nice-modal-react'
 import { default as ReactModerDrawer } from 'react-modern-drawer'
 
 import dynamic from 'next/dynamic'
 
 const DrawerComponent = dynamic<ReactModerDrawer>(() => import('react-modern-drawer'), { ssr: false })
 
-import 'react-modern-drawer/dist/index.css'
+export const Drawer = NiceModal.create(({ children }: ReactNode) => {
+  const { hide, visible } = useModal()
 
-type Props = {
-  children: React.ReactNode
-  isOpen: boolean
-  onClose: VoidFunction
-}
-
-export function Drawer({ children, isOpen, onClose }: Props) {
   useEffect(() => {
-    if (isOpen) {
+    if (visible) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'initial'
     }
-  }, [isOpen])
+  }, [visible])
 
   return (
     <DrawerComponent
       style={{ background: '#1C1C1E' }}
       size="90%"
       className="h-screen bg-dark"
-      open={isOpen}
+      open={visible}
       direction="bottom"
-      onClose={onClose}
+      onClose={hide}
     >
       {children}
     </DrawerComponent>
   )
-}
+})

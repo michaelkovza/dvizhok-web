@@ -5,14 +5,18 @@ import { Input } from '@/shared/Input/Input'
 import { Button } from '@/shared/Button/Button'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import React from 'react'
+import { Typography } from '@/shared/Typography/Typography'
 
-export default function CreateEvent() {
+export function CreateEventForm() {
   const { register, handleSubmit } = useForm()
   const onSubmit = handleSubmit((data) => console.log(data))
 
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
+        <Typography className='text-center font-semibold pb-4 pt-2 text-xl'>Создать событие</Typography>
+
+
         <div className="py-2 px-4">
           <Input {...register('title')} type="text" placeholder="Название мероприятия" />
         </div>
