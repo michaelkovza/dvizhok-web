@@ -38,7 +38,7 @@ export function FiltersForm() {
         <div className="px-4">
           <p className="font-semibold pb-4">Выберите дату</p>
           <div className="flex justify-between gap-2.5 pb-6">
-            <Input {...register('date')} type="date" placeholder="Дата" format={""} />
+            <Input {...register('date')} type="date" placeholder="Дата" />
           </div>
 
           <p className="font-semibold pb-4">Предпочтительное время</p>

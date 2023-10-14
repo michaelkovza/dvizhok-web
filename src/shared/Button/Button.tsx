@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from 'react'
+import React, { ReactNode } from 'react'
 import classNames from 'classnames'
 type Props = {
-  children: PropsWithChildren
+  children: ReactNode
   bgColor?: 'accent-purple' | 'accent-dark'
   className?: string
   type?: 'primary' | 'link' | 'submit'

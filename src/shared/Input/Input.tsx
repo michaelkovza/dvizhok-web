@@ -9,6 +9,8 @@ type Props = InputComponentProps & {
 }
 
 function InputComponent({ forwardedRef, ...props }: Props) {
+  console.log(props.value)
+
   return (
     <MaterialInput
       color="white"
@@ -17,10 +19,10 @@ function InputComponent({ forwardedRef, ...props }: Props) {
       }}
       className="!border !border-border-input bg-transparent focus:!border-border-input focus:!border-t-border-input"
       ref={forwardedRef}
-      {...props}
       labelProps={{
         className: 'hidden',
       }}
+      {...props}
     />
   )
 }
