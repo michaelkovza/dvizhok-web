@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Typography } from '@/shared/Typography/Typography'
 
 type Props = {
+  id?: string
   title: string
   timestamp: string
   distance: string
