@@ -1,5 +1,7 @@
+export type IconName = 'filters' | 'morning' | 'day' | 'evening' | 'night' | 'plus' | 'search' | 'map' | 'profile'
+
 type Props = {
-  name: 'filters' | 'morning' | 'day' | 'evening' | 'night'
+  name: IconName
 }
 
 export function Icon({ name }: Props) {

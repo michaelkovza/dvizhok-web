@@ -1,16 +1,14 @@
 import { Typography } from '@/shared/Typography/Typography'
-import { ReactNode } from 'react'
-import { Icon } from '@/shared/Icon/Icon'
+import { Icon, IconName } from '@/shared/Icon/Icon'
 
 type Props = {
   handleOnClick: VoidFunction
-  icon: ReactNode
+  icon: IconName
   text: string
   isActive?: boolean
 }
 
 export function ButtonWithIcon({ handleOnClick, icon, text, isActive }: Props) {
-  console.log(icon)
   return (
     <button
       className={`${isActive ? 'bg-accent-purple' : 'bg-accent-dark'}  flex items-center gap-2 rounded py-2 px-2.5`}

@@ -2,13 +2,16 @@
 
 import React, { ReactNode, useEffect } from 'react'
 import NiceModal, { useModal } from '@ebay/nice-modal-react'
-import { default as ReactModerDrawer } from 'react-modern-drawer'
 
 import dynamic from 'next/dynamic'
 
-const DrawerComponent = dynamic<ReactModerDrawer>(() => import('react-modern-drawer'), { ssr: false })
+const DrawerComponent = dynamic(() => import('react-modern-drawer'), { ssr: false })
 
-export const Drawer = NiceModal.create(({ children }: ReactNode) => {
+type Props = {
+  children: ReactNode
+}
+
+export const Drawer = NiceModal.create(({ children }: Props) => {
   const { hide, visible } = useModal()
 
   useEffect(() => {

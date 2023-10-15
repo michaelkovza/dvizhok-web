@@ -1,6 +1,6 @@
 import { Tag } from '@/entities/Tags/ui/Tag/Tag'
 
-const TAGS_LIST = [
+export const TAGS_LIST = [
   {
     title: 'Бильярд',
     id: '1',

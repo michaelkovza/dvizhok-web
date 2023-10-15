@@ -1,8 +1,8 @@
-import { ForwardedRef, forwardRef, HTMLProps } from 'react'
+import { ForwardedRef, forwardRef } from 'react'
 import React from 'react'
-import { Input as MaterialInput } from '@material-tailwind/react'
+import { Input as MaterialInput, InputProps } from '@material-tailwind/react'
 
-type InputComponentProps = HTMLProps<HTMLInputElement>
+type InputComponentProps = InputProps
 
 type Props = InputComponentProps & {
   forwardedRef?: ForwardedRef<HTMLInputElement>
@@ -13,7 +13,6 @@ function InputComponent({ forwardedRef, ...props }: Props) {
 
   return (
     <MaterialInput
-      color="white"
       containerProps={{
         className: 'min-w-[auto]',
       }}
@@ -23,6 +22,8 @@ function InputComponent({ forwardedRef, ...props }: Props) {
       }}
       {...props}
       ref={forwardedRef}
+      color="white"
+      crossOrigin={false}
     />
   )
 }

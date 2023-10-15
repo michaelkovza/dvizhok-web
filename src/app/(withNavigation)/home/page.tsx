@@ -1,5 +1,4 @@
 import { EventsList } from '@/entities/Events/ui/EventsList/EventsList'
-import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import { FiltersButton } from '@/entities/Filters/ui/FiltersButton/FiltersButton'
 import { Typography } from '@/shared/Typography/Typography'
 

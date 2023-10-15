@@ -2,8 +2,8 @@
 
 import { Typography as MaterialTypography, TypographyProps } from '@material-tailwind/react'
 
-export function Typography(props: TypographyProps) {
-  const { children, ...restProps } = props
+export function Typography(props: Omit<TypographyProps, 'ref'>) {
+  const { children } = props
 
-  return <MaterialTypography {...restProps}>{children}</MaterialTypography>
+  return <MaterialTypography {...props}>{children}</MaterialTypography>
 }
