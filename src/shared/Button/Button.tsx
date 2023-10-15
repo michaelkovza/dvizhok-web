@@ -16,7 +16,11 @@ export function Button({ className, children, bgColor = 'accent-purple', type = 
     }
 
     case 'link': {
-      return <button className={classNames('text-accent-purple', className)}>{children}</button>
+      return (
+        <button type="button" className={classNames('text-accent-purple', className)}>
+          {children}
+        </button>
+      )
     }
 
     default: {

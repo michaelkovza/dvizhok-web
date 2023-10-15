@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react'
 import { useCallback } from 'react'
 import NiceModal from '@ebay/nice-modal-react'
 import { Drawer } from '@/shared/Drawer/Drawer'
-import { CreateEventForm } from '@/entities/Events/ui/CreateEventForm/CreateEventForm'
+import { CreateEventForm } from '@/widgets/CreateEventForm/CreateEventForm'
 import { Icon } from '@/shared/Icon/Icon'
 
 export function CreateEventButton() {

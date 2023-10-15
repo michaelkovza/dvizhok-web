@@ -2,14 +2,14 @@ import { Slider as SliderMaterial, SliderProps } from '@material-tailwind/react'
 import { ForwardedRef, forwardRef } from 'react'
 
 type Props = SliderProps & {
-  ref: ForwardedRef<HTMLDivElement>
+  forwardedRef?: ForwardedRef<HTMLDivElement>
 }
 
 function SliderComponent({ forwardedRef, ...props }: Props) {
   return (
     <SliderMaterial
-      ref={forwardedRef}
       {...props}
+      ref={forwardedRef}
       step={1}
       min={1}
       max={100}
@@ -23,7 +23,7 @@ function SliderComponent({ forwardedRef, ...props }: Props) {
 }
 
 export const Slider = forwardRef<HTMLDivElement, Props>((props, ref) => (
-  <SliderComponent forwardedRef={ref} {...props} />
+  <SliderComponent {...props} forwardedRef={ref} />
 ))
 
 Slider.displayName = 'Slider'

@@ -5,7 +5,7 @@ import { Input as MaterialInput } from '@material-tailwind/react'
 type InputComponentProps = HTMLProps<HTMLInputElement>
 
 type Props = InputComponentProps & {
-  ref: ForwardedRef<HTMLInputElement>
+  forwardedRef?: ForwardedRef<HTMLInputElement>
 }
 
 function InputComponent({ forwardedRef, ...props }: Props) {
@@ -18,17 +18,17 @@ function InputComponent({ forwardedRef, ...props }: Props) {
         className: 'min-w-[auto]',
       }}
       className="!border !border-border-input bg-transparent focus:!border-border-input focus:!border-t-border-input"
-      ref={forwardedRef}
       labelProps={{
         className: 'hidden',
       }}
       {...props}
+      ref={forwardedRef}
     />
   )
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <InputComponent forwardedRef={ref} {...props} />
+  <InputComponent {...props} forwardedRef={ref} />
 ))
 
 Input.displayName = 'Input'

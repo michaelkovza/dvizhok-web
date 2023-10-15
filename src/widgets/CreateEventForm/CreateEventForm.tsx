@@ -1,11 +1,12 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { Input } from '@/shared/Input/Input'
 import { Button } from '@/shared/Button/Button'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Typography } from '@/shared/Typography/Typography'
+import { getSelectedTags } from '@/entities/Tags/lib/getSelectedTags'
 
 type Form = {
   date: Date
@@ -17,7 +18,7 @@ type Form = {
 }
 
 export function CreateEventForm() {
-  const { register, handleSubmit } = useForm<Form>({
+  const { register, handleSubmit, control, getValues, setValue } = useForm<Form>({
     defaultValues: {
       date: new Date(),
       title: '',
@@ -28,6 +29,15 @@ export function CreateEventForm() {
     },
   })
   const onSubmit = handleSubmit((data) => console.log(data))
+
+  const onTagSelect = useCallback(
+    (tag: string) => {
+      const tagsInState = getValues('tags')
+
+      setValue('tags', getSelectedTags(tagsInState, tag))
+    },
+    [getValues, setValue],
+  )
 
   return (
     <form onSubmit={onSubmit}>
@@ -42,9 +52,10 @@ export function CreateEventForm() {
           <Input {...register('description')} type="text" placeholder="Краткое описание" />
         </div>
 
-        <div className="py-2 px-4">
-          <Input {...register('place')} type="text" placeholder="Адрес" />
-        </div>
+        {/* TODO сделать выбор адреса на карте */}
+        {/*<div className="py-2 px-4">*/}
+        {/*  <Input {...register('place')} type="text" placeholder="Адрес" />*/}
+        {/*</div>*/}
 
         <div className="py-2 px-4">
           <Input {...register('price')} type="number" placeholder="Цена" />
@@ -58,12 +69,19 @@ export function CreateEventForm() {
         {/*  <Input {...register('time')} type="time" placeholder="Время" step={900} />*/}
         {/*</div>*/}
 
+        {/* TODO шторка с выбором всех тегов */}
         <div className="py-2">
           <div className="flex justify-between align-center px-4 pb-2">
             <p className="font-semibold">Выберите 3 тега</p>
             <Button type="link">Смотреть все</Button>
           </div>
-          <TagsList />
+          <Controller
+            render={() => {
+              return <TagsList onTagSelect={onTagSelect} />
+            }}
+            name="tags"
+            control={control}
+          />
         </div>
       </div>
       <div className="sticky bottom-0 p-4">

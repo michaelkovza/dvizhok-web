@@ -5,23 +5,43 @@ import { Button } from '@/shared/Button/Button'
 import { useForm, Controller } from 'react-hook-form'
 import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import { DayPartPicker } from '@/entities/DayPartPicker/ui/DayPartPicker'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Typography } from '@/shared/Typography/Typography'
 import { DayPartsIds } from '@/entities/DayPartPicker/model'
 import { Slider } from '@/shared/Slider/Slider'
+import { getSelectedTags } from '@/entities/Tags/lib/getSelectedTags'
+
+type Form = {
+  tags: string[]
+  from?: string
+  to?: string
+  dayPart: keyof typeof DayPartsIds
+  distance: string
+  date: Date
+}
 
 export function FiltersForm() {
-  const { control, handleSubmit, setValue, watch, register } = useForm({
+  const { control, handleSubmit, setValue, watch, register, getValues } = useForm<Form>({
     defaultValues: {
-      from: '',
-      to: '',
-      distance: '10',
+      from: undefined,
+      to: undefined,
+      distance: '5',
       dayPart: DayPartsIds.MORNING,
-      date: new Date().toLocaleDateString(),
+      date: new Date(),
+      tags: [],
     },
   })
 
   const onSubmit = handleSubmit((data) => console.log(data))
+
+  const onTagSelect = useCallback(
+    (tag: string) => {
+      const tagsInState = getValues('tags')
+
+      setValue('tags', getSelectedTags(tagsInState, tag))
+    },
+    [getValues, setValue],
+  )
 
   return (
     <form onSubmit={onSubmit}>
@@ -32,7 +52,13 @@ export function FiltersForm() {
           <p className="font-semibold pb-4">Выбрать теги</p>
         </div>
         <div className="pb-6">
-          <TagsList />
+          <Controller
+            render={() => {
+              return <TagsList onTagSelect={onTagSelect} />
+            }}
+            name="tags"
+            control={control}
+          />
         </div>
 
         <div className="px-4">
@@ -71,7 +97,20 @@ export function FiltersForm() {
             <p className="font-semibold">{watch('distance')} км</p>
           </div>
 
-          <Slider {...register('distance')} />
+          <Controller
+            name="distance"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Slider
+                  {...field}
+                  onChange={({ target }) => {
+                    setValue('distance', target.value)
+                  }}
+                />
+              )
+            }}
+          />
         </div>
       </div>
       <div className="sticky bottom-0 p-4">
