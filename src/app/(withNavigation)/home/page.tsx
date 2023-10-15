@@ -14,7 +14,7 @@ export default function Home() {
 
           <FiltersButton />
         </div>
-        <TagsList />
+        {/*<TagsList />*/}
       </div>
       <div className="px-4">
         <EventsList />
