@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import EventImage from '../../../../../public/lib.jpg'
-import { Tag } from '@/entities/Tags/ui/Tag/Tag'
 import { TAGS_LIST } from '@/entities/Tags/ui/TagsList/TagsList'
 
 export function DetailedEventCard() {
@@ -12,7 +11,9 @@ export function DetailedEventCard() {
 
         <div className="absolute bottom-2 left-4 flex gap-2">
           {TAGS_LIST.map((tag) => (
-            <Tag key={tag.id} title={tag.title} color={tag.color} />
+            <p key={tag.id} className="py-1.5 px-3 rounded bg-accent-purple">
+              {tag.title}
+            </p>
           ))}
         </div>
       </div>
