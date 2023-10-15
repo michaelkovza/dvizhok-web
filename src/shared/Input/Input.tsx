@@ -1,24 +1,34 @@
 import { ForwardedRef, forwardRef, HTMLProps } from 'react'
 import React from 'react'
+import { Input as MaterialInput } from '@material-tailwind/react'
 
 type InputComponentProps = HTMLProps<HTMLInputElement>
 
 type Props = InputComponentProps & {
-  ref: ForwardedRef<HTMLInputElement>
+  forwardedRef?: ForwardedRef<HTMLInputElement>
 }
 
 function InputComponent({ forwardedRef, ...props }: Props) {
+  console.log(props.value)
+
   return (
-    <input
-      className="w-full bg-accent-dark rounded p-3 outline-0 border border-border-input"
-      ref={forwardedRef}
+    <MaterialInput
+      color="white"
+      containerProps={{
+        className: 'min-w-[auto]',
+      }}
+      className="!border !border-border-input bg-transparent focus:!border-border-input focus:!border-t-border-input"
+      labelProps={{
+        className: 'hidden',
+      }}
       {...props}
+      ref={forwardedRef}
     />
   )
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => (
-  <InputComponent forwardedRef={ref} {...props} />
+  <InputComponent {...props} forwardedRef={ref} />
 ))
 
 Input.displayName = 'Input'

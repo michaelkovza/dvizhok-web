@@ -9,3 +9,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id     String  @id @default(uuid())
+  email  String  @unique
+  name   String
+  events Event[]
+}
+
+model Event {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  main_image  String
+  tags        Tag[]
+  price       Float    @default(0)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  User        User     @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model Tag {
+  id      String  @id @default(uuid())
+  title   String
+  color   String
+  Event   Event?  @relation(fields: [eventId], references: [id])
+  eventId String?
+}
