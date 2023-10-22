@@ -4,5 +4,22 @@
 
 
 body {
-  color: #fff
+  color: #fff;
+}
+
+.react-date-picker__wrapper {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 7px;
+  font-size: 14px;
+  background-color: transparent;
+  border-color: rgb(58 58 60 / 1) !important
+}
+
+.react-date-picker__inputGroup__input {
+  outline: none;
+  background-color: transparent !important;
+
 }

@@ -7,27 +7,32 @@ import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import React, { useCallback } from 'react'
 import { Typography } from '@/shared/Typography/Typography'
 import { getSelectedTags } from '@/entities/Tags/lib/getSelectedTags'
-import DatePicker from 'react-date-picker'
+import InputMask from 'react-input-mask'
+// import DatePicker from 'react-date-picker'
 
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
+import { DayPartsIds } from '@/entities/DayPartPicker/model'
+import { DayPartPicker } from '@/entities/DayPartPicker/ui/DayPartPicker'
 
 type Form = {
-  date: Date
+  date: string
   title: string
   description: string
-  place: string
+  address: string
   tags: string[]
   price?: number
+  dayPart: keyof typeof DayPartsIds
 }
 
 export function CreateEventForm() {
   const { register, handleSubmit, control, getValues, setValue } = useForm<Form>({
     defaultValues: {
-      date: new Date(),
+      dayPart: DayPartsIds.EVENING,
+      date: new Date().toLocaleDateString('ru'),
       title: '',
       description: '',
-      place: '',
+      address: '',
       price: undefined,
       tags: [],
     },
@@ -43,25 +48,21 @@ export function CreateEventForm() {
     [getValues, setValue],
   )
 
-  const onDateSelect = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(e.target.value, 'ASD')
-      setValue('date', e.target.value)
-    },
-    [setValue],
-  )
-
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
         <Typography className="text-center font-semibold pb-4 pt-2 text-xl">Создать событие</Typography>
 
         <div className="py-2 px-4">
-          <Input {...register('title')} type="text" placeholder="Название мероприятия" />
+          <Input {...register('title')} type="text" label="Название мероприятия" />
         </div>
 
         <div className="py-2 px-4">
-          <Input {...register('description')} type="text" placeholder="Краткое описание" />
+          <Input {...register('description')} type="text" label="Краткое описание" maxLength={150} />
+        </div>
+
+        <div className="py-2 px-4">
+          <Input {...register('address')} type="text" label="Адрес" />
         </div>
 
         {/* TODO сделать выбор адреса на карте */}
@@ -70,34 +71,53 @@ export function CreateEventForm() {
         {/*</div>*/}
 
         <div className="py-2 px-4">
-          <Input {...register('price')} type="number" placeholder="Цена" />
+          <Input {...register('price')} type="number" label="Стоимость" />
         </div>
 
-        <Controller
-          render={({ field: { value, onChange } }) => {
-            return (
-              <div className="py-2 px-4 rounded">
-                <DatePicker
-                  disableCalendar
-                  calendarIcon={null}
-                  clearIcon={null}
-                  value={value}
-                  format="dd.MM.yyyy"
-                  onChange={onChange}
-                />
-              </div>
-            )
-          }}
-          name="date"
-          control={control}
-        />
+        <div className="py-2 px-4">
+          <Controller
+            render={({ field: { value, onChange } }) => {
+              return (
+                <InputMask mask="99.99.9999" {...register('date')} value={value} onChange={onChange}>
+                  <Input label="Дата (дд.мм.гггг)" />
+                </InputMask>
+              )
+            }}
+            name="date"
+            control={control}
+          />
+        </div>
+        <div className="py-2 px-4">
+          <Controller
+            control={control}
+            render={({ field: { value } }) => (
+              <DayPartPicker
+                activeDayPart={value}
+                handleOnClick={(value) => {
+                  setValue('dayPart', value)
+                }}
+              />
+            )}
+            name="dayPart"
+          />
+        </div>
 
-        {/* TODO доделать инпуты для ввода даты и времени */}
-        {/*<div className="flex justify-between gap-2.5 py-2 px-4">*/}
-        {/*  <InputMask mask="99/99/9999" {...register('date')}>*/}
-        {/*    <Input type="text" placeholder="Дата" disableUnderline />*/}
-        {/*  </InputMask>*/}
-        {/*  <Input {...register('time')} type="time" placeholder="Время" step={900} />*/}
+        {/*<div className="py-2 px-4">*/}
+        {/*  <Controller*/}
+        {/*    render={({ field: { value, onChange } }) => {*/}
+        {/*      return (*/}
+        {/*        <DatePicker*/}
+        {/*          className="[&>*:first-child]:bg-red"*/}
+        {/*          clearIcon={null}*/}
+        {/*          value={value}*/}
+        {/*          format="dd.MM.yyyy"*/}
+        {/*          onChange={onChange}*/}
+        {/*        />*/}
+        {/*      )*/}
+        {/*    }}*/}
+        {/*    name="date"*/}
+        {/*    control={control}*/}
+        {/*  />*/}
         {/*</div>*/}
 
         {/* TODO шторка с выбором всех тегов */}

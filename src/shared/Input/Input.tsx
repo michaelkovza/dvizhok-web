@@ -9,23 +9,7 @@ type Props = InputComponentProps & {
 }
 
 function InputComponent({ forwardedRef, ...props }: Props) {
-  console.log(props.value)
-
-  return (
-    <MaterialInput
-      containerProps={{
-        className: 'min-w-[auto]',
-      }}
-      className="!border !border-border-input bg-transparent focus:!border-border-input focus:!border-t-border-input"
-      labelProps={{
-        className: 'hidden',
-      }}
-      {...props}
-      ref={forwardedRef}
-      color="white"
-      crossOrigin="false"
-    />
-  )
+  return <MaterialInput {...props} ref={forwardedRef} color="white" crossOrigin="false" size="lg" />
 }
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => (
