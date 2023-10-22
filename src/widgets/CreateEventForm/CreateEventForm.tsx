@@ -7,6 +7,10 @@ import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 import React, { useCallback } from 'react'
 import { Typography } from '@/shared/Typography/Typography'
 import { getSelectedTags } from '@/entities/Tags/lib/getSelectedTags'
+import DatePicker from 'react-date-picker'
+
+import 'react-date-picker/dist/DatePicker.css'
+import 'react-calendar/dist/Calendar.css'
 
 type Form = {
   date: Date
@@ -39,6 +43,14 @@ export function CreateEventForm() {
     [getValues, setValue],
   )
 
+  const onDateSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(e.target.value, 'ASD')
+      setValue('date', e.target.value)
+    },
+    [setValue],
+  )
+
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
@@ -60,6 +72,25 @@ export function CreateEventForm() {
         <div className="py-2 px-4">
           <Input {...register('price')} type="number" placeholder="Цена" />
         </div>
+
+        <Controller
+          render={({ field: { value, onChange } }) => {
+            return (
+              <div className="py-2 px-4 rounded">
+                <DatePicker
+                  disableCalendar
+                  calendarIcon={null}
+                  clearIcon={null}
+                  value={value}
+                  format="dd.MM.yyyy"
+                  onChange={onChange}
+                />
+              </div>
+            )
+          }}
+          name="date"
+          control={control}
+        />
 
         {/* TODO доделать инпуты для ввода даты и времени */}
         {/*<div className="flex justify-between gap-2.5 py-2 px-4">*/}
