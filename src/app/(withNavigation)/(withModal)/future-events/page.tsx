@@ -1,9 +1,9 @@
 import Footer from '@/widgets/Footer/Footer'
 
-export default function Profile() {
+export default function FutureEvents() {
   return (
     <>
-      <div>Profile</div>
+      <div>future events</div>
       <Footer />
     </>
   )

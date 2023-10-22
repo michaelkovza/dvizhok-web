@@ -4,7 +4,7 @@ import { Icon } from '@/shared/Icon/Icon'
 
 export default function Footer() {
   return (
-    <div className="sticky bottom-0 flex justify-between py-2 px-4 bg-accent-dark">
+    <div className="fixed left-0 right-0 bottom-0 flex justify-between py-2 px-4 bg-accent-dark">
       <Link href="/">
         <Icon name="search" />
       </Link>

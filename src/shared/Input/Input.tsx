@@ -23,7 +23,7 @@ function InputComponent({ forwardedRef, ...props }: Props) {
       {...props}
       ref={forwardedRef}
       color="white"
-      crossOrigin={false}
+      crossOrigin="false"
     />
   )
 }

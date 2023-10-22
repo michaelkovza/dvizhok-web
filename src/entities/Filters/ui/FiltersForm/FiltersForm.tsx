@@ -25,8 +25,8 @@ export function FiltersForm() {
     defaultValues: {
       from: undefined,
       to: undefined,
-      distance: '5',
-      dayPart: DayPartsIds.MORNING,
+      distance: '10',
+      dayPart: DayPartsIds.DAY,
       date: new Date(),
       tags: [],
     },

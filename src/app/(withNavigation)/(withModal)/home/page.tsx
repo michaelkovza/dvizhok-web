@@ -1,6 +1,7 @@
 import { EventsList } from '@/entities/Events/ui/EventsList/EventsList'
 import { FiltersButton } from '@/entities/Filters/ui/FiltersButton/FiltersButton'
 import { Typography } from '@/shared/Typography/Typography'
+import Footer from '@/widgets/Footer/Footer'
 
 export default function Home() {
   return (
@@ -18,6 +19,8 @@ export default function Home() {
       <div className="px-4">
         <EventsList />
       </div>
+
+      <Footer />
     </main>
   )
 }
