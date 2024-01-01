@@ -1,3 +1,4 @@
+// FIXME make correct paths in tsconfig by FSD style
 import { EventsList } from '@/entities/Events/ui/EventsList/EventsList'
 import { FiltersButton } from '@/entities/Filters/ui/FiltersButton/FiltersButton'
 import { Typography } from '@/shared/Typography/Typography'

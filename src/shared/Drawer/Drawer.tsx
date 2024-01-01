@@ -3,9 +3,8 @@
 import React, { ReactNode, useEffect } from 'react'
 import NiceModal, { useModal } from '@ebay/nice-modal-react'
 
-import dynamic from 'next/dynamic'
-
-const DrawerComponent = dynamic(() => import('react-modern-drawer'), { ssr: false })
+import { default as DrawerComponent } from 'react-modern-drawer'
+import 'react-modern-drawer/dist/index.css'
 
 type Props = {
   children: ReactNode
