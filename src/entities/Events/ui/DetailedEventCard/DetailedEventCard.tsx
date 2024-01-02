@@ -7,7 +7,7 @@ export function DetailedEventCard() {
     <>
       <div className="w-full h-64 relative ">
         <Image src={EventImage} alt="" className="object-cover" fill />
-        <p className="absolute right-4 top-2 p-2 rounded backdrop-blur-sm bg-blur-dark">26 ноября 18:00</p>
+        <p className="absolute right-4 top-2 p-2 rounded-md backdrop-blur-sm bg-blur-dark">26 ноября 18:00</p>
 
         <div className="absolute bottom-2 left-4 flex gap-2">
           {TAGS_LIST.map((tag) => (
@@ -31,7 +31,7 @@ export function DetailedEventCard() {
 
         {/* TODO сделать ссылку */}
         <p className="font-bold pb-1">Организатор</p>
-        <div className="flex p-3.5 gap-3.5 items-center bg-accent-dark rounded">
+        <div className="flex p-3.5 gap-3.5 items-center bg-accent-dark rounded-md">
           <div className="relative w-14 h-14 rounded-full overflow-hidden">
             <Image src={EventImage} alt="" className="object-cover" fill />
           </div>

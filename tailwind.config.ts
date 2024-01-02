@@ -18,6 +18,7 @@ const config: Config = withMT({
         'accent-dark': '#242426',
         'blur-dark': 'rgba(28, 28, 30, 0.67)',
         'border-input': '#3A3A3C',
+        'card-background': '#0F0F10',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
