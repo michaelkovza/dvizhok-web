@@ -13,7 +13,7 @@ type Props = {
 export function Header({ children }: Props) {
   const router = useRouter()
   const pathname = usePathname()
-  const withBackButton = pathname.includes('/events/')
+  const withBackButton = pathname?.includes('/events/')
 
   return (
     <header className="flex content-center px-4 py-4 justify-center relative">
