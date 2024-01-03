@@ -1,5 +1,5 @@
 export type Tag = {
-  title: string
-  id: string
+  name: string
   color: string
+  id: number
 }

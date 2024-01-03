@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import EventImage from '../../../../../public/lib.jpg'
-import { TAGS_LIST } from '@/entities/Tags/ui/TagsList/TagsList'
 
 export function DetailedEventCard() {
   return (
@@ -9,13 +8,13 @@ export function DetailedEventCard() {
         <Image src={EventImage} alt="" className="object-cover" fill />
         <p className="absolute right-4 top-2 p-2 rounded-md backdrop-blur-sm bg-blur-dark">26 ноября 18:00</p>
 
-        <div className="absolute bottom-2 left-4 flex gap-2">
-          {TAGS_LIST.map((tag) => (
-            <p key={tag.id} className="py-1.5 px-3 rounded bg-accent-purple">
-              {tag.title}
-            </p>
-          ))}
-        </div>
+        {/*<div className="absolute bottom-2 left-4 flex gap-2">*/}
+        {/*  {TAGS_LIST.map((tag) => (*/}
+        {/*    <p key={tag.id} className="py-1.5 px-3 rounded bg-accent-purple">*/}
+        {/*      {tag.title}*/}
+        {/*    </p>*/}
+        {/*  ))}*/}
+        {/*</div>*/}
       </div>
       <div className="p-4">
         <h1 className="font-bold pb-1">Книжный клуб</h1>

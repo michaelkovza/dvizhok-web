@@ -1,22 +1,16 @@
-import { useCallback } from 'react'
+'use client'
+
+import { Button } from '@material-tailwind/react'
 
 type Props = {
-  id?: string
-  title: string
   color: string
-  onClick?: (id: string) => void
+  name: string
 }
 
-export function Tag({ onClick, title, id }: Props) {
-  const onTagClick = useCallback(() => {
-    if (id) {
-      onClick?.(id)
-    }
-  }, [id, onClick])
-
+export function Tag({ name, color }: Props) {
   return (
-    <p className="py-1.5 px-3 rounded bg-accent-purple" onClick={onTagClick}>
-      {title}
-    </p>
+    <Button className="bg-card-background py-1.5 px-3 rounded" style={{ color }}>
+      {name}
+    </Button>
   )
 }

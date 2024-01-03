@@ -1,27 +1,15 @@
 import { Tag } from '@/entities/Tags/ui/Tag/Tag'
-
-export const TAGS_LIST = [
-  {
-    title: 'Бильярд',
-    id: '1',
-    color: 'white',
-  },
-  {
-    title: 'Кружок чтения',
-    id: '2',
-    color: 'white',
-  },
-]
+import { Tag as TagType } from '../../model/types'
 
 type Props = {
-  onTagSelect: (id: string) => void
+  tags: TagType[]
 }
 
-export function TagsList({ onTagSelect }: Props) {
+export function TagsList({ tags }: Props) {
   return (
-    <div className="overflow-y-auto flex gap-2 px-4 pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-      {TAGS_LIST.map((tag) => (
-        <Tag key={tag.id} id={tag.id} title={tag.title} color={tag.color} onClick={onTagSelect} />
+    <div className="flex gap-2 mx-4">
+      {tags.map((item) => (
+        <Tag key={item.id} color={item.color} name={item.name} />
       ))}
     </div>
   )
