@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-data-proxy-build": "npx prisma generate --data-proxy && next build"
   },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.10",
