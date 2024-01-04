@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   await prisma.tags.createMany({
     data: [
       {
-        name: 'Вел',
+        name: 'Велосипед',
         color: 'pink',
       },
       {
@@ -25,6 +25,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       {
         name: 'Настолки',
         color: 'green',
+      },
+      {
+        name: 'Серфинг',
+        color: 'blue',
+      },
+      {
+        name: 'Сквош',
+        color: 'tomato',
+      },
+      {
+        name: 'Теннис',
+        color: 'white',
       },
     ],
   })

@@ -8,9 +8,8 @@ import { TagsList } from '@/entities/Tags/ui/TagsList/TagsList'
 
 const prisma = new PrismaClient()
 
-// eslint-disable-next-line func-style
-const fetchTags = async () => {
-  return await prisma.tags.findMany()
+function fetchTags() {
+  return prisma.tags.findMany()
 }
 
 export default async function Home() {

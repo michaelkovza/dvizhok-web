@@ -8,7 +8,7 @@ type Props = {
 
 export function TagsList({ tags }: Props) {
   return (
-    <div className="flex gap-2 mx-4">
+    <div className="flex gap-2 px-4 overflow-y-auto hidden-scrollbar">
       {tags?.map((item) => <Tag key={item.id} color={item.color} name={item.name} />)}
     </div>
   )
