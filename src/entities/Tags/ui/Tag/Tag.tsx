@@ -9,7 +9,7 @@ type Props = {
 
 export function Tag({ name, color }: Props) {
   return (
-    <Button className="bg-card-background py-1.5 px-3 rounded" style={{ color }} onClick={() => null}>
+    <Button size="sm" className="bg-card-background rounded" style={{ color }} onClick={() => null}>
       {name}
     </Button>
   )
