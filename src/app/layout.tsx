@@ -1,10 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { Header } from '@/widgets/Header/Header'
 
-import { ReactNode } from 'react'
-import 'react-modern-drawer/dist/index.css'
+import React, { ReactNode } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,14 +15,12 @@ type Props = {
   children: ReactNode
 }
 
-export default function RootLayout(props: Props) {
+function RootLayout(props: Props) {
   return (
     <html className="bg-accent-dark" lang="en">
-      <body className={inter.className}>
-        <Header />
-
-        {props.children}
-      </body>
+      <body className={inter.className}>{props.children}</body>
     </html>
   )
 }
+
+export default RootLayout
