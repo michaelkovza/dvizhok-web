@@ -1,46 +1,40 @@
 'use client'
-import { Button } from '@material-tailwind/react'
-import { useRouter, usePathname } from 'next/navigation'
-import { useCallback } from 'react'
+
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 // FIXME стилизовать под макет
 export function Navigation() {
-  const router = useRouter()
   const pathname = usePathname()
 
-  const handleToSearchPage = useCallback(() => router.push('/'), [router])
-  const handleToFutureEventsPage = useCallback(() => router.push('/future-events'), [router])
-  const handleToMyEventsPage = useCallback(() => router.push('/my-events'), [router])
-
   return (
-    <div className="grid grid-cols-3 gap-2">
-      <Button
-        variant="text"
+    <div className="grid grid-cols-3 gap-2 px-4">
+      <Link
         className={`${
-          pathname === '/' ? 'text-white' : 'text-accent-purple'
-        } font-semibold text-lg	p-0 normal-case font-normal`}
-        onClick={handleToSearchPage}
+          pathname === '/home' ? 'text-white' : 'text-accent-purple'
+        } font-semibold text-lg	p-0 normal-case font-normal text-center`}
+        href="/"
       >
         Ищу
-      </Button>
-      <Button
-        variant="text"
+      </Link>
+
+      <Link
         className={`${
           pathname === '/future-events' ? 'text-white' : 'text-accent-purple'
-        } font-semibold text-lg	p-0 normal-case font-normal`}
-        onClick={handleToFutureEventsPage}
+        } font-semibold text-lg	p-0 normal-case font-normal text-center`}
+        href="/future-events"
       >
         Пойду
-      </Button>
-      <Button
-        variant="text"
+      </Link>
+
+      <Link
         className={`${
           pathname === '/my-events' ? 'text-white' : 'text-accent-purple'
-        } font-semibold text-lg	p-0 normal-case font-normal`}
-        onClick={handleToMyEventsPage}
+        } font-semibold text-lg	p-0 normal-case font-normal text-center`}
+        href="/my-events"
       >
         Организую
-      </Button>
+      </Link>
     </div>
   )
 }

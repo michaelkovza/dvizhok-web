@@ -25,7 +25,7 @@ type Form = {
   dayPart: keyof typeof DayPartsIds
 }
 
-export function CreateEventForm() {
+function CreateEvent() {
   const { register, handleSubmit, control, getValues, setValue } = useForm<Form>({
     defaultValues: {
       dayPart: DayPartsIds.EVENING,
@@ -51,7 +51,7 @@ export function CreateEventForm() {
   return (
     <form onSubmit={onSubmit}>
       <div className="h-screen">
-        <Typography className="text-center font-semibold pb-4 pt-2 text-xl">Создать событие</Typography>
+        <Typography className="text-center font-semibold px-4 py-3 text-xl">Создать событие</Typography>
 
         <div className="py-2 px-4">
           <Input {...register('title')} type="text" label="Название мероприятия" />
@@ -141,3 +141,5 @@ export function CreateEventForm() {
     </form>
   )
 }
+
+export default CreateEvent

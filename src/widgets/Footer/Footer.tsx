@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { CreateEventButton } from '@/entities/Events/ui/CreateEventButton/CreateEventButton'
 import { Icon } from '@/shared/Icon/Icon'
 
 export default function Footer() {
@@ -13,7 +12,9 @@ export default function Footer() {
         <Icon name="map" />
       </Link>
 
-      <CreateEventButton />
+      <Link href="/create/event">
+        <Icon name="plus" />
+      </Link>
 
       <Link href="/profile">
         <Icon name="profile" />
