@@ -12,7 +12,7 @@ function fetchTags() {
 }
 
 export default async function Home() {
-  // const tags = await fetchTags()
+  const tags = await fetchTags()
 
   return (
     <main>
@@ -25,7 +25,7 @@ export default async function Home() {
           <FiltersButton />
         </div>
 
-        {/*<TagsList tags={tags} />*/}
+        <TagsList tags={tags} />
       </div>
 
       <div className="px-4">
